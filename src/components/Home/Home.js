@@ -21,9 +21,7 @@ function Home() {
   const searchQuery=query.get('searchQuery')
   const [search,setSearch]=useState('');
   const [tags,setTags]=useState([]);
-  useEffect(()=>{
-     dispatch(getPosts());
-  },[currentId,dispatch])
+  
   const handleKeyPress=(e)=>{
     if(e.keyCode===13){
       //search post on enter key
@@ -73,9 +71,9 @@ function Home() {
               <Button onClick={searchPost} className={classes.searchButton} color='primary' variant='contained'>Search</Button>
             </AppBar> 
             <br></br>
-            <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
-            <Paper elevation={6}>
-              <Pagination></Pagination>
+            <Form currentId={currentId} setCurrentId={setCurrentId}></Form> 
+            <Paper elevation={6} className={classes.pagination}>
+              <Pagination page={page}></Pagination>
             </Paper>
           </Grid>
         </Grid>
