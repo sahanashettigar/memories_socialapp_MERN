@@ -11,7 +11,7 @@ import useStyles from './Styles'
 function useQuery(){
   return new URLSearchParams(useLocation().search)
 }
-function Home() {
+const Home=()=> {
     const [currentId,setCurrentId]=useState(null);
   const classes=useStyles();
   const dispatch=useDispatch();
@@ -31,9 +31,8 @@ function Home() {
   const handleAdd=(tag)=>{
     setTags([...tags,tag])
   }
-  const handleDelete=(tagToDelete)=>{
+  const handleDelete=(tagToDelete)=>
     setTags(tags.filter((tag)=>tag!==tagToDelete))
-  }
   const searchPost=()=>{
     if(search.trim() || tags){
       //dispatch to fetch search posts
@@ -41,7 +40,7 @@ function Home() {
       history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     }
     else{
-      history.push('/posts')
+      history.push('/')
     }
   }
     return (
