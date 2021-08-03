@@ -5,6 +5,7 @@ import moment from 'moment'
 import {useParams,useHistory} from 'react-router-dom';
 import useStyles from './styles'
 import {getPost, getPostsBySearch} from '../../actions/posts'
+import CommentSection from './CommentSection';
 const PostDetails = () => {
     const {post,posts,isLoading}=useSelector((state)=>state.posts)
     const dispatch=useDispatch();
@@ -39,9 +40,12 @@ const PostDetails = () => {
                     <Typography variant='body1' component='p' gutterBottom>{post.message}</Typography>
                     <Typography variant='h6'>Created By : {post.name}</Typography>
                     <Typography variant='body1'>{moment(post.createdAt).fromNow()}</Typography>
-                </div>
+                    <Divider style={{margin:'20px 0'}}></Divider>
+                    <CommentSection post={post}></CommentSection>
+                    <Divider style={{margin:'20px 0'}}></Divider>
                 <div className={classes.imageSection}>
                     <img alt={post.title} className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}></img>
+                </div>
                 </div>
             </div>
             {recommendedPosts.length > 0 &&
